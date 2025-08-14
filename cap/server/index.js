@@ -53,6 +53,6 @@ app.get('/api/models/:id', (req, res) => {
   res.json({ modelUrl: `https://cdn.example.com/models/${id}.glb` });
 });
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${'http://localhost:' + PORT + '/api/poi'}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server listening on port ${PORT}`);
 });
