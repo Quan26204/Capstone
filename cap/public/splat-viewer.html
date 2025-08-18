@@ -1,0 +1,14 @@
+<!doctype html><html><head><meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Splat Viewer</title>
+<style>html,body{height:100%;margin:0;background:transparent} splat-viewer{display:block;width:100%;height:100%}</style>
+<script type="module">
+  import 'https://unpkg.com/@mkkellogg/gaussian-splats-3d@latest/dist/gaussian-splats-3d.js';
+</script>
+</head><body>
+  <splat-viewer id="v" fov="55" exposure="0.9" instantColor="true"></splat-viewer>
+  <script>
+    const src = new URLSearchParams(location.search).get('src');
+    if (src) document.getElementById('v').setAttribute('src', src);
+  </script>
+</body></html>

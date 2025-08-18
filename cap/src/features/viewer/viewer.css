@@ -1,5 +1,5 @@
-.viewer-root { background:#fff; border:1px solid #e7e7e7; border-radius:16px; overflow:hidden; margin:16px; box-shadow:0 8px 24px rgba(0,0,0,.08); }
-.viewer-root canvas { height:40vh !important; }
-.viewer-header { display:flex; align-items:baseline; justify-content:space-between; padding:10px 14px; border-bottom:1px solid #eee; background:#fafafa; }
-.viewer-placeholder { padding:10px 14px; color:#6b7280; font-size:13px; }
-.muted { color:#9ca3af; font-size:12px; }
+.viewer-root{background:#fff;border:1px solid #e7e7e7;border-radius:16px;overflow:hidden;margin:16px 0;box-shadow:0 8px 24px rgba(0,0,0,.08)}
+.viewer-root canvas{height:40vh !important;display:block}
+.viewer-header{display:flex;align-items:baseline;justify-content:space-between;padding:10px 14px;border-bottom:1px solid #eee;background:#fafafa}
+.viewer-placeholder{padding:10px 14px;color:#6b7280;font-size:13px}
+.muted{color:#9ca3af;font-size:12px}

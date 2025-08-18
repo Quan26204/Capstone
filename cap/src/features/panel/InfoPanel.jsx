@@ -1,5 +1,6 @@
 import React from 'react';
 import { useViewer } from '../../context/ViewerContext.jsx';
+import { Link } from 'react-router-dom';
 import './panel.css';
 
 export default function InfoPanel() {
@@ -15,6 +16,11 @@ export default function InfoPanel() {
       <p>{selectedPOI.description}</p>
       {selectedPOI.image && <img className="info-thumb" src={selectedPOI.image} alt={selectedPOI.name} />}
       {hasVideo && <video className="info-video" controls src={selectedPOI.video} />}
+
+      <div style={{ marginTop: 12, display:'flex', gap:8 }}>
+        <Link className="btn primary" to={`/viewer/${selectedPOI.id}`}>Open 3D model</Link>
+        <button className="btn" onClick={() => setSelectedPOI?.(null)}>Close</button>
+      </div>
     </aside>
   );
 }

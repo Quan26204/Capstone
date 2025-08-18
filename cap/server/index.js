@@ -28,7 +28,7 @@ const poiData = [
     name: "Boronia Library",
     description: "Main campus library with study spaces, computers, and quiet zones.",
     image: "/images/library.jpg",
-    modelUrl: "/models/library.glb",
+    modelUrl: "/models/BST.splat",
     xy: { x: 0.452, y: 0.381 }
   },
   {
@@ -36,7 +36,7 @@ const poiData = [
     name: "Science Building",
     description: "Faculty of Science laboratories, classrooms, and research facilities.",
     image: "/images/science.jpg",
-    modelUrl: "/models/science.glb",
+    modelUrl: "/models/JG.splat",
     xy: { x: 0.600, y: 0.400 }
   },
   {
@@ -44,7 +44,7 @@ const poiData = [
     name: "Agora",
     description: "Popular coffee and lunch spot on campus.",
     image: "/images/agora.jpg",
-    modelUrl: "/models/agora.glb",
+    modelUrl: "/models/NR7.splat",
     xy: { x: 0.500, y: 0.520 }
   }
 ];
