@@ -42,20 +42,20 @@ const poiData = [
     modelUrl: "/models/BST.splat",
     xy: { x: 0.394, y: 0.310 }
   },
-  {
-    id: 2,
-    name: "Science Building",
-    description: "Faculty of Science laboratories, classrooms, and research facilities.",
-    image: "/images/science.jpg",
-    modelUrl: "/models/JG.splat",
-    xy: { x: 0.600, y: 0.400 }
-  },
+  // {
+  //   id: 2,
+  //   name: "Science Building",
+  //   description: "Faculty of Science laboratories, classrooms, and research facilities.",
+  //   image: "/images/science.jpg",
+  //   modelUrl: "/models/JG-BST.splat",
+  //   xy: { x: 0.600, y: 0.400 }
+  // },
   {
     id: 3,
     name: "Agora",
     description: "Popular coffee and lunch spot on campus.",
     image: "/images/agora.jpg",
-    modelUrl: "/models/Poppy.glb",
+    modelUrl: "/models/JG.splat",
     xy: { x: 0.394, y: 0.425 }
   },
   {
@@ -63,7 +63,7 @@ const poiData = [
     name: "Engineering Building",
     description: "Engineering labs and classrooms.",
     image: "/images/engineering.jpg",
-    modelUrl: "/models/ENG.splat",
+    modelUrl: "/models/JSM.splat",
     xy: { x: 0.7000, y: 0.3000 } // Coordinates for the new marker
   }
 ];

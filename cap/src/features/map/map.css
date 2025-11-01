@@ -1,6 +1,54 @@
-.map-root    { position: relative; }
-.map-toolbar { position: absolute; top: 10px; left: 10px; display: flex; gap: 8px; }
-.map-canvas  { position: relative; }
-.map-image   { position: relative; z-index: 1; pointer-events: none; }
-.poi-marker  { position: absolute; z-index: 3; transform: translate(-50%, -100%); background: transparent; border: none; cursor: pointer; }
-.poi-icon    { width: 28px; height: 28px; object-fit: contain; pointer-events: none; }
+.map-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 10px 20px;
+  z-index: 1000;
+  text-align: center;
+}
+
+.map-header h2 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.leaflet-container {
+  width: 100vw !important;
+  height: 100vh !important;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.leaflet-popup-content button {
+  margin-top: 8px;
+  padding: 4px 8px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.leaflet-popup-content button:hover {
+  background: #0056b3;
+}
+
+.map-title-overlay {
+  position: absolute;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255,255,255,0.95);
+  padding: 10px 32px;
+  border-radius: 12px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #222;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  z-index: 401;
+  pointer-events: none;
+}
+

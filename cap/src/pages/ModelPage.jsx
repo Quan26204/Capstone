@@ -1,55 +1,42 @@
 import React, { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useViewer } from '../context/ViewerContext.jsx';
 import ModelViewer from '../features/viewer/ModelViewer.jsx';
 
 export default function ModelPage() {
   const { id } = useParams();
-  const { selectedPOI, setSelectedPOI } = useViewer() || {};
-  const [loading, setLoading] = useState(true);
-  const [err, setErr] = useState('');
+  const { selectedPOI } = useViewer() || {};
+  const [modelUrl, setModelUrl] = useState(null);
+  const [title, setTitle] = useState('');
+
+  // fallback mapping when user navigates directly
+  const modelMap = {
+    '1': '/models/BST.splat',
+    '2': '/models/JG-BST.splat',
+    '3': '/models/JG.splat',
+    '4': '/models/JSM.splat',
+    '5': '/models/NR7.splat',
+  };
 
   useEffect(() => {
-    let active = true;
-    (async () => {
-      try {
-        const res = await fetch('/api/poi');
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const all = await res.json();
-        const found = all.find(p => String(p.id) === String(id));
-        if (active) {
-          setSelectedPOI?.(found || null);
-          setLoading(false);
-        }
-      } catch (e) {
-        if (active) { setErr(e.message); setLoading(false); }
-      }
-    })();
-    return () => { active = false; };
-  }, [id, setSelectedPOI]);
+    // prefer selectedPOI from context if it matches route id
+    if (selectedPOI && String(selectedPOI.id) === String(id)) {
+      setModelUrl(selectedPOI.modelUrl || selectedPOI.model || null);
+      setTitle(selectedPOI.name || `Model ${id}`);
+    } else {
+      setModelUrl(modelMap[id] || null);
+      setTitle(`Model ${id}`);
+    }
+  }, [id, selectedPOI]);
 
-  if (loading) return <div style={{ padding: 16 }}><Link to="/">← Back</Link><p>Loading…</p></div>;
-  if (err)     return <div style={{ padding: 16 }}><Link to="/">← Back</Link><p style={{color:'red'}}>Error: {err}</p></div>;
-  if (!selectedPOI) return <div style={{ padding: 16 }}><Link to="/">← Back</Link><p>POI not found.</p></div>;
+  if (!modelUrl) return <div style={{ padding: 20 }}>Model not found.</div>;
 
   return (
-    <div style={{ padding: 16 }}>
-      <div style={{ display:'flex', alignItems:'center', gap:12 }}>
-        <Link to="/">← Back to Map</Link>
-        <h2 style={{ margin:0 }}>{selectedPOI.name}</h2>
-      </div>
-      <p style={{ marginTop: 4 }}>{selectedPOI.description}</p>
-
-      {/* Renders .splat via <Splat /> and .glb via GLTF loader */}
-      <ModelViewer />
-
-      {selectedPOI.image && (
-        <img
-          src={selectedPOI.image}
-          alt={selectedPOI.name}
-          style={{ width: 320, borderRadius: 12, marginTop: 12 }}
-        />
-      )}
+    <div style={{ height: '100vh', position: 'relative' }}>
+      <h2 style={{ position: 'absolute', left: 16, top: 8, zIndex: 2000 }}>
+        {title}
+      </h2>
+      <ModelViewer modelUrl={modelUrl} />
     </div>
   );
 }
