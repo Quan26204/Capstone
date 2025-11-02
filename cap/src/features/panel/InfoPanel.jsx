@@ -1,24 +1,20 @@
 import React from 'react';
 import { useViewer } from '../../context/ViewerContext.jsx';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './panel.css';
 
 export default function InfoPanel() {
   const { selectedPOI, setSelectedPOI } = useViewer() || {};
-  const navigate = useNavigate();
-
+  
   if (!selectedPOI) return null;
 
-  const handleView3D = () => {
-    // ensure context set, then navigate
-    setSelectedPOI?.(selectedPOI);
-    navigate(`/viewer/${selectedPOI.id}`);
-  };
+  const hasVideo = typeof selectedPOI.video === 'string' && selectedPOI.video.endsWith('.mp4');
+  const hasImage = typeof selectedPOI.image === 'string';
 
   return (
-    <aside className="info-panel" role="dialog" aria-label="POI details">
-      <button
-        className="close"
+    <aside className="info-panel">
+      <button 
+        className="close" 
         onClick={() => setSelectedPOI?.(null)}
         aria-label="Close panel"
       >
@@ -26,11 +22,11 @@ export default function InfoPanel() {
       </button>
 
       <h3>{selectedPOI.name}</h3>
-
-      {selectedPOI.image && (
-        <img
-          className="info-thumb"
-          src={selectedPOI.image}
+      
+      {hasImage && (
+        <img 
+          className="info-thumb" 
+          src={selectedPOI.image} 
           alt={selectedPOI.name}
           loading="lazy"
         />
@@ -38,11 +34,31 @@ export default function InfoPanel() {
 
       <p>{selectedPOI.description}</p>
 
-      <div style={{ marginTop: 16, display: 'flex', gap: 12 }}>
-        <button className="btn primary" onClick={handleView3D}>
+      {hasVideo && (
+        <video 
+          className="info-video" 
+          controls 
+          src={selectedPOI.video}
+          preload="metadata"
+        />
+      )}
+
+      <div style={{ 
+        marginTop: 16,
+        display: 'flex',
+        gap: 12,
+        justifyContent: 'flex-start'
+      }}>
+        <Link 
+          className="btn primary" 
+          to={`/viewer/${selectedPOI.id}`}
+        >
           View 3D Model
-        </button>
-        <button className="btn" onClick={() => setSelectedPOI?.(null)}>
+        </Link>
+        <button 
+          className="btn"
+          onClick={() => setSelectedPOI?.(null)}
+        >
           Close
         </button>
       </div>

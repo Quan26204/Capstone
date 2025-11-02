@@ -19,12 +19,12 @@ export default function ModelViewer() {
   return (
     <div className="viewer-root">
       <div className="viewer-header">
-        <h3>3D Viewer</h3>
+        {/* <h3>3D Viewer</h3> */}
         <span className="muted">{selectedPOI?.name || 'Select a marker'}</span>
       </div>
 
       {isSplat && (
-        <Canvas camera={{ position: [0, 0, 6], fov: 50 }} dpr={[1, 2]}>
+        <Canvas camera={{ position: [6, 10, 4], fov: 50 }} dpr={[1, 2]}>
           <ambientLight intensity={0.6} />
           <directionalLight position={[5, 10, 5]} intensity={0.8} />
           <Suspense fallback={null}>
