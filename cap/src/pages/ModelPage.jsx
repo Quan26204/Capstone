@@ -34,6 +34,9 @@ export default function ModelPage() {
   // Info to show in the box
   const infoName = selectedPOI?.name || title;
   const infoDesc = selectedPOI?.description || 'No description available.';
+  const infoCode = selectedPOI?.buildingCode || 'N/A';
+  const infoTime = selectedPOI?.timeBuilt || 'N/A';
+  const infoCarpark = selectedPOI?.closestCarpark || 'N/A';
 
   return (
     <div style={{ height: '100vh', width: '100vw', position: 'relative' }}>
@@ -96,7 +99,10 @@ export default function ModelPage() {
           }}
         >
           <h3 style={{ marginTop: 0 }}>{infoName}</h3>
-          <p style={{ marginBottom: 0 }}>{infoDesc}</p>
+          <p style={{ marginBottom: 8 }}>{infoDesc}</p>
+          <div><b>Building Code:</b> {infoCode}</div>
+          <div><b>Time Built:</b> {infoTime}</div>
+          <div><b>Closest Carpark:</b> {infoCarpark}</div>
         </div>
       )}
 

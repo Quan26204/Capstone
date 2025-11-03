@@ -40,7 +40,10 @@ const poiData = [
     coords: [-37.720633390642845, 145.04632099734553],
     modelUrl: '/models/BST.splat',
     description: 'Bus stop on campus',
-    xy: { x: 0.5, y: 0.5 }
+    xy: { x: 0.5, y: 0.5 },
+    buildingCode: 'BST',
+    timeBuilt: '1998',
+    closestCarpark: 'Carpark 1'
   },
   {
     id: 2,
