@@ -1,6 +1,8 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import MapView from '../features/map/MapView.jsx';
 import InfoPanel from '../features/panel/InfoPanel.jsx';
+import SearchBox from '../components/SearchBox.jsx';
+import '../components/SearchBox.css';
 
 export default function Home() {
   const [poi, setPoi] = useState([]);
@@ -10,7 +12,6 @@ export default function Home() {
     fetch('/api/poi')
       .then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
       .then(data => {
-        // Map of id -> modelUrl (and/or xy) you want to attach
         const modelMap = {
           1: '/models/BST.splat',
           2: '/models/JG.splat',
@@ -37,27 +38,10 @@ export default function Home() {
   const poiReady = useMemo(() => (Array.isArray(poi) ? poi : []).filter(p => p?.xy), [poi]);
 
   return (
-    <div style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
-      {/* Title */}
-      <div
-        style={{
-          height: '50px',
-          backgroundColor: 'black',
-          color: 'white',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexShrink: 0,
-        }}
-      >
-        <h2 style={{ margin: 0 }}>La Trobe Campus – Interactive Tour</h2>
-      </div>
-
-      {/* Map */}
-      <div style={{ flex: 1 }}>
-        <MapView poi={poiReady} />
-        <InfoPanel />
-      </div>
+    <div style={{ height: '100vh', width: '100vw', position: 'relative' }}>
+      <MapView poi={poiReady} />
+      <InfoPanel />
+      <SearchBox />
     </div>
   );
 }
