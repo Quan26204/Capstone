@@ -90,12 +90,12 @@ export default function ModelPage() {
             left: 16,
             top: 120,
             width: 280,
-            background: '#fff',
+            background: '#f34a4aff',
             borderRadius: 12,
             boxShadow: '0 2px 10px rgba(0,0,0,0.08)',
             padding: 20,
             zIndex: 2200,
-            color: '#222'
+            color: '#ffffffff'
           }}
         >
           <h3 style={{ marginTop: 0 }}>{infoName}</h3>

@@ -7,13 +7,23 @@ import './map.css';
 import { useViewer } from '../../context/ViewerContext.jsx';
 import MapClickLogger from './MapClickLogger';
 
-// Fix default Leaflet marker icons
-delete L.Icon.Default.prototype._getIconUrl;
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl:
-    'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
-  iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+// Custom marker icon using your image in public/markers/pin.png
+const customIcon = new L.Icon({
+  iconUrl: '/markers/pin.png', // path relative to public folder
   shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+});
+
+const customIconLarge = new L.Icon({
+  iconUrl: '/markers/pin.png',
+  shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+  iconSize: [35, 57], // Larger size for animation
+  iconAnchor: [17, 57],
+  popupAnchor: [1, -44],
+  shadowSize: [57, 57]
 });
 
 export default function MapView({ poi }) {
@@ -53,6 +63,7 @@ export default function MapView({ poi }) {
           <Marker
             key={p.id}
             position={p.coords}
+            icon={selectedPOI?.id === p.id ? customIconLarge : customIcon}
             ref={ref => { markerRefs.current[p.id] = ref; }}
             eventHandlers={{
               click: () => setSelectedPOI?.(p),
