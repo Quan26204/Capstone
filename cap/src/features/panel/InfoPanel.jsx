@@ -42,11 +42,10 @@ export default function InfoPanel() {
           preload="metadata"
         />
       )}
-
       <div style={{ 
         marginTop: 16,
         display: 'flex',
-        gap: 12,
+        gap: 20,
         justifyContent: 'flex-start'
       }}>
         <Link 
@@ -55,6 +54,13 @@ export default function InfoPanel() {
         >
           View 3D Model
         </Link>
+        <button 
+          className="btn vr-btn"
+          style={{ marginLeft: 30}}
+          onClick={() => alert('VR mode coming soon!')}
+        >
+          VR
+        </button>
         <button 
           className="btn"
           onClick={() => setSelectedPOI?.(null)}

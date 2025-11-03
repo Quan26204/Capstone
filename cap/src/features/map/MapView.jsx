@@ -193,6 +193,15 @@ export default function MapView() {
                   >
                     View 3D Model
                   </button>
+                  <button
+                    className="vr-btn"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      openVR(p);
+                    }}
+                  >
+                    VR
+                  </button>
                 </div>
               </div>
             </Popup>

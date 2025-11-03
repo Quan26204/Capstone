@@ -9,6 +9,7 @@ export default function ModelPage() {
   const { selectedPOI } = useViewer() || {};
   const [modelUrl, setModelUrl] = useState(null);
   const [title, setTitle] = useState('');
+  const [showInfo, setShowInfo] = useState(false);
 
   const modelMap = {
     '1': '/models/BST.splat',
@@ -30,8 +31,13 @@ export default function ModelPage() {
 
   if (!modelUrl) return <div style={{ padding: 20 }}>Model not found.</div>;
 
+  // Info to show in the box
+  const infoName = selectedPOI?.name || title;
+  const infoDesc = selectedPOI?.description || 'No description available.';
+
   return (
     <div style={{ height: '100vh', width: '100vw', position: 'relative' }}>
+      {/* Back button */}
       <button
         style={{
           position: 'absolute',
@@ -51,11 +57,55 @@ export default function ModelPage() {
       >
         ← Back to Map
       </button>
+
+      {/* Info button on the left */}
+      <button
+        style={{
+          position: 'absolute',
+          left: 16,
+          top: 80,
+          zIndex: 2100,
+          padding: '8px 16px',
+          background: '#ff0000ff',
+          color: '#fff',
+          border: 'none',
+          borderRadius: '6px',
+          cursor: 'pointer',
+          fontWeight: 500,
+          fontSize: '1rem'
+        }}
+        onClick={() => setShowInfo(v => !v)}
+      >
+        ℹ️ Info
+      </button>
+
+      {/* Info box */}
+      {showInfo && (
+        <div
+          style={{
+            position: 'absolute',
+            left: 16,
+            top: 120,
+            width: 280,
+            background: '#fff',
+            borderRadius: 12,
+            boxShadow: '0 2px 10px rgba(0,0,0,0.08)',
+            padding: 20,
+            zIndex: 2200,
+            color: '#222'
+          }}
+        >
+          <h3 style={{ marginTop: 0 }}>{infoName}</h3>
+          <p style={{ marginBottom: 0 }}>{infoDesc}</p>
+        </div>
+      )}
+
+      {/* Title in the center */}
       <h2
         style={{
           position: 'absolute',
           left: '50%',
-          top: -5,
+          top: -7,
           transform: 'translateX(-50%)',
           zIndex: 2000,
           textAlign: 'center',

@@ -52,3 +52,17 @@
   pointer-events: none;
 }
 
+.info-panel .btn {
+  margin-right: 20px;
+}
+
+.info-panel .btn:last-child {
+  margin-right: 0;
+}
+.btn.vr-btn {
+  background: #00b894;
+  color: #fff;
+}
+.btn.vr-btn:hover {
+  background: #00916e;
+}
