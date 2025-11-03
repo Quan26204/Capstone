@@ -7,6 +7,7 @@ import '../components/SearchBox.css';
 export default function Home() {
   const [poi, setPoi] = useState([]);
   const [error, setError] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     fetch('/api/poi')
@@ -37,11 +38,24 @@ export default function Home() {
 
   const poiReady = useMemo(() => (Array.isArray(poi) ? poi : []).filter(p => p?.xy), [poi]);
 
+  // Filter POIs based on search query
+  const filteredPOIs = useMemo(() => {
+    if (!searchQuery) return poiReady;
+    return poiReady.filter(p =>
+      p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (p.description && p.description.toLowerCase().includes(searchQuery.toLowerCase()))
+    );
+  }, [searchQuery, poiReady]);
+
   return (
     <div style={{ height: '100vh', width: '100vw', position: 'relative' }}>
       <MapView poi={poiReady} />
       <InfoPanel />
-      <SearchBox />
+      <SearchBox
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        results={filteredPOIs}
+      />
     </div>
   );
 }

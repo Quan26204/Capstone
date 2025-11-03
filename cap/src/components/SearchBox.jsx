@@ -1,8 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-export default function SearchBox() {
-  const [value, setValue] = useState('');
-
+export default function SearchBox({ searchQuery, setSearchQuery, results }) {
   return (
     <aside className="search-box">
       <h3>Search</h3>
@@ -17,6 +15,7 @@ export default function SearchBox() {
           color: '#1976d2'
         }}
       >
+        {/* Search for building */}
       </label>
       <input
         id="search-input"
@@ -32,12 +31,23 @@ export default function SearchBox() {
           marginBottom: '24px',
           textAlign: 'center'
         }}
-        value={value}
-        onChange={e => setValue(e.target.value)}
+        value={searchQuery}
+        onChange={e => setSearchQuery(e.target.value)}
       />
       {/* List container box */}
       <div className="search-list-container">
-        {/* Future list items will go here */}
+        {results.length === 0 ? (
+          <div style={{ color: '#888', textAlign: 'center' }}>No results found.</div>
+        ) : (
+          <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+            {results.map(poi => (
+              <li key={poi.id} style={{ padding: '8px 0', borderBottom: '1px solid #eee' }}>
+                <strong>{poi.name}</strong>
+                <div style={{ fontSize: '0.95em', color: '#555' }}>{poi.description}</div>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </aside>
   );
