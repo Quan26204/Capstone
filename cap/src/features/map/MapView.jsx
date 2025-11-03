@@ -1,5 +1,5 @@
-import React from 'react';
-import { MapContainer, TileLayer, Marker, Popup} from 'react-leaflet';
+import React, { useEffect, useRef } from 'react';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { useNavigate } from 'react-router-dom';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -16,163 +16,29 @@ L.Icon.Default.mergeOptions({
   shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
 });
 
-// POI list (ensure model paths match public/models)
-const poiList = [
-  {
-    id: 1,
-    name: 'Bus Stop',
-    coords: [-37.720633390642845, 145.04632099734553],
-    modelUrl: '/models/BST.splat',
-    description: 'Bus stop on campus',
-  },
-  {
-    id: 2,
-    name: 'Statue',
-    coords: [-37.71987763017671, 145.0464783764545],
-    modelUrl: '/models/JG-BST.splat',
-    description: 'Statue near the quad',
-  },
-  {
-    id: 3,
-    name: 'Jenny Graves',
-    coords: [-37.72079511810905, 145.0470506813924],
-    modelUrl: '/models/JG.splat',
-    description: 'Jenny Graves building',
-  },
-  {
-    id: 4,
-    name: 'John Scott Meeting House',
-    coords: [-37.719405172981254, 145.05110354716055],
-    modelUrl: '/models/JSM.splat',
-    description: 'Meeting house',
-  },
-  {
-    id: 5,
-    name: 'Graduate House',
-    coords: [-37.71353942258608, 145.05038653906396],
-    modelUrl: '/models/NR7.splat',
-    description: 'Graduate house',
-  },
-  {
-    id: 6,
-    name: 'George Singer Building',
-    coords: [-37.7189637428938, 145.0475871562958],
-    modelUrl: '/models/NewBuilding.splat',
-    description: 'George Singer Building',
-  },
-  {
-    id: 7,
-    name: 'Biological Sciences Building',
-    coords: [-37.71918015433441, 145.0469219684601],
-    modelUrl: '/models/NewBuilding.splat',
-    description: 'The biological science building',
-  },
-  {
-    id: 8,
-    name: 'East Lecture Theatre',
-    coords: [-37.720779882040674, 145.0492608547211],
-    modelUrl: '/models/NewBuilding.splat',
-    description: 'The East Lecture Theatre',
-  },
-  {
-    id: 9,
-    name: 'La Trobe Institue for Molecular Science',
-    coords: [-37.719905764551186, 145.0475871562958],
-    modelUrl: '/models/NewBuilding.splat',
-    description: 'The La Trobe institute for Molecular Science',
-  },
-  {
-    id: 10,
-    name: 'Indoor Sports Centre;',
-    coords: [-37.71952870615465, 145.05314806283425],
-    modelUrl: '/models/NewBuilding.splat',
-    description: 'The Indoor Sports Centre',
-  },
-  {
-    id: 11,
-    name: 'Peribolos East',
-    coords: [-37.72155642048775, 145.04895377706816],
-    modelUrl: '/models/NewBuilding.splat',
-    description: 'The Peribolos East building',
-  },
-  {
-    id: 12,
-    name: 'Peribolos West',
-  coords: [-37.72153942235765, 145.04795193672183],
-  modelUrl: 'models/NewBuilding.splat',
-  description: 'The Peribolos West building',
-  },
-  {
-    id: 13,
-    name: 'David Myers Centre',
-    coords: [-37.72205709341803, 145.0483971834183],
-    modelUrl: 'models/NewBuilding.splat',
-    description: 'The David Myers Centre building',
-  },
-  {
-    id: 14,
-    name: 'David Myers West',
-    coords: [-37.72205285022732, 145.04768908023837],
-    modelUrl: 'models/NewBuilding.splat',
-    description: 'The David Myers West building',
-  },
-  {
-    id: 15,
-    name: 'David Myers East',
-    coords: [-37.72206557979871, 145.04921257495883],
-    modelUrl: 'models/NewBuilding.splat',
-    description: 'The David Myers East building',
-  },
-  {
-    id: 16,
-    name: 'Library Building',
-    coords: [-37.720024577242846, 145.04840254783633],
-    modelUrl: 'models/NewBuilding.splat',
-    description: 'The Library Building',
-  },
-  {
-    id: 17,
-    name: 'Chisholm College',
-    coords: [-37.723767079486024, 145.0498723983765],
-    modelUrl: 'models/NewBuilding.splat',
-    description: 'Chisholm College',
-  },
-  {
-    id: 18,
-    name: 'Glenn College',
-    coords: [-37.7207247195914, 145.0514227151871],
-    modelUrl: 'models/NewBuilding.splat',
-    description: 'Glenn College',
-  },
-  {
-    id: 19,
-    name: 'North and South Apartments',
-    coords: [-37.720711989789585, 145.0532948970795],
-    modelUrl: 'models/NewBuilding.splat',
-    description: 'North and South Apartments',
-  },
-  {
-    id: 20,
-    name: 'Menzies College',
-    coords: [-37.7216285299291, 145.05170166492465],
-    modelUrl: 'models/NewBuilding.splat',
-    description: 'Menzies College',
-  },
-];
-
-export default function MapView() {
-  const { setSelectedPOI } = useViewer() || {};
+export default function MapView({ poi }) {
+  const { setSelectedPOI, selectedPOI } = useViewer() || {};
   const navigate = useNavigate();
+  const markerRefs = useRef({});
+
+  // Open popup when selectedPOI changes
+  useEffect(() => {
+    if (selectedPOI && markerRefs.current[selectedPOI.id]) {
+      markerRefs.current[selectedPOI.id].openPopup();
+    }
+  }, [selectedPOI]);
 
   const openViewer = (p) => {
-    // set selected POI in context then navigate so ModelPage can prefer context
     setSelectedPOI?.(p);
     navigate(`/viewer/${p.id}`);
   };
 
+  const openVR = (p) => {
+    alert('VR mode coming soon!');
+  };
+
   return (
     <div className="map-root">
-      {/* Remove the old header bar */}
       <MapContainer
         center={[-37.7199, 145.048]}
         zoom={17}
@@ -184,10 +50,11 @@ export default function MapView() {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution="© OpenStreetMap contributors"
         />
-        {poiList.map((p) => (
+        {poi.map((p) => (
           <Marker
             key={p.id}
             position={p.coords}
+            ref={ref => { markerRefs.current[p.id] = ref; }}
             eventHandlers={{
               click: () => setSelectedPOI?.(p),
             }}
@@ -196,7 +63,7 @@ export default function MapView() {
               <div style={{ minWidth: 180 }}>
                 <b>{p.name}</b>
                 <div style={{ marginTop: 6 }}>{p.description}</div>
-                <div style={{ marginTop: 8 }}>
+                <div style={{ marginTop: 8, display: 'flex', gap: 8 }}>
                   <button
                     className="model-btn"
                     onClick={(e) => {
@@ -220,7 +87,6 @@ export default function MapView() {
             </Popup>
           </Marker>
         ))}
-        {/* New title overlay */}
         <div className="map-title-overlay">
           La Trobe University – 3D Campus Digital Twin
         </div>
