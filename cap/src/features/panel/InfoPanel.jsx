@@ -1,20 +1,18 @@
 import React from 'react';
 import { useViewer } from '../../context/ViewerContext.jsx';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './panel.css';
 
 export default function InfoPanel() {
   const { selectedPOI, setSelectedPOI } = useViewer() || {};
-  
+  const navigate = useNavigate();
+
   if (!selectedPOI) return null;
 
-  const hasVideo = typeof selectedPOI.video === 'string' && selectedPOI.video.endsWith('.mp4');
-  const hasImage = typeof selectedPOI.image === 'string';
-
   return (
-    <aside className="info-panel">
-      <button 
-        className="close" 
+    <aside className="info-panel" role="dialog" aria-label="POI details">
+      <button
+        className="close"
         onClick={() => setSelectedPOI?.(null)}
         aria-label="Close panel"
       >
@@ -22,11 +20,11 @@ export default function InfoPanel() {
       </button>
 
       <h3>{selectedPOI.name}</h3>
-      
-      {hasImage && (
-        <img 
-          className="info-thumb" 
-          src={selectedPOI.image} 
+
+      {selectedPOI.image && (
+        <img
+          className="info-thumb"
+          src={selectedPOI.image}
           alt={selectedPOI.name}
           loading="lazy"
         />
@@ -34,34 +32,20 @@ export default function InfoPanel() {
 
       <p>{selectedPOI.description}</p>
 
-      {hasVideo && (
-        <video 
-          className="info-video" 
-          controls 
-          src={selectedPOI.video}
-          preload="metadata"
-        />
-      )}
-      <div style={{ 
-        marginTop: 16,
-        display: 'flex',
-        gap: 20,
-        justifyContent: 'flex-start'
-      }}>
-        <Link 
-          className="btn primary" 
-          to={`/viewer/${selectedPOI.id}`}
+      <div style={{ marginTop: 16, display: 'flex', gap: 12 }}>
+        <button
+          className="btn primary"
+          onClick={() => navigate(`/viewer/${selectedPOI.id}`)}
         >
           View 3D Model
-        </Link>
-        <button 
+        </button>
+        <button
           className="btn vr-btn"
-          style={{ marginLeft: 30}}
           onClick={() => alert('VR mode coming soon!')}
         >
           VR
         </button>
-        <button 
+        <button
           className="btn"
           onClick={() => setSelectedPOI?.(null)}
         >

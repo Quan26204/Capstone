@@ -40,6 +40,7 @@ const poiData = [
     coords: [-37.720633390642845, 145.04632099734553],
     modelUrl: '/models/BST.splat',
     description: 'Bus stop on campus',
+    xy: { x: 0.5, y: 0.5 }
   },
   {
     id: 2,
@@ -47,6 +48,7 @@ const poiData = [
     coords: [-37.71987763017671, 145.0464783764545],
     modelUrl: '/models/JG-BST.splat',
     description: 'Statue near the quad',
+    xy: { x: 0.5, y: 0.5 }
   },
   {
     id: 3,
@@ -54,6 +56,7 @@ const poiData = [
     coords: [-37.72079511810905, 145.0470506813924],
     modelUrl: '/models/JG.splat',
     description: 'Jenny Graves building',
+    xy: { x: 0.5, y: 0.5 }
   },
   {
     id: 4,
@@ -61,6 +64,7 @@ const poiData = [
     coords: [-37.719405172981254, 145.05110354716055],
     modelUrl: '/models/JSM.splat',
     description: 'Meeting house',
+    xy: { x: 0.5, y: 0.5 }
   },
   {
     id: 5,
@@ -68,6 +72,7 @@ const poiData = [
     coords: [-37.71353942258608, 145.05038653906396],
     modelUrl: '/models/NR7.splat',
     description: 'Graduate house',
+    xy: { x: 0.5, y: 0.5 }
   },
   {
     id: 6,
@@ -75,6 +80,7 @@ const poiData = [
     coords: [-37.7189637428938, 145.0475871562958],
     modelUrl: '/models/NewBuilding.splat',
     description: 'Description of the new building',
+    xy: { x: 0.5, y: 0.5 }
   },
   {
     id: 7,
@@ -82,6 +88,7 @@ const poiData = [
     coords: [-37.71918015433441, 145.0469219684601],
     modelUrl: '/models/NewBuilding.splat',
     description: 'Description of the new building',
+    xy: { x: 0.5, y: 0.5 }
   },
   {
     id: 8,
@@ -89,6 +96,7 @@ const poiData = [
     coords: [-37.720779882040674, 145.0492608547211],
     modelUrl: '/models/NewBuilding.splat',
     description: 'Description of the new building',
+    xy: { x: 0.5, y: 0.5 }
   },
   {
     id: 9,
@@ -96,6 +104,7 @@ const poiData = [
     coords: [-37.719905764551186, 145.0475871562958],
     modelUrl: '/models/NewBuilding.splat',
     description: 'Description of the new building',
+    xy: { x: 0.5, y: 0.5 }
   },
   {
     id: 10,
@@ -103,6 +112,7 @@ const poiData = [
     coords: [-37.71952870615465, 145.05314806283425],
     modelUrl: '/models/NewBuilding.splat',
     description: 'Description of the new building',
+    xy: { x: 0.5, y: 0.5 }
   },
   {
     id: 11,
@@ -110,13 +120,15 @@ const poiData = [
     coords: [-37.72155642048775, 145.04895377706816],
     modelUrl: '/models/NewBuilding.splat',
     description: 'Description of the new building',
+    xy: { x: 0.5, y: 0.5 }
   },
   {
     id: 12,
     name: 'Peribolos West',
-  coords: [-37.72153942235765, 145.04795193672183],
-  modelUrl: 'models/NewBuilding.splat',
-  description: 'Description of the mew building',
+    coords: [-37.72153942235765, 145.04795193672183],
+    modelUrl: 'models/NewBuilding.splat',
+    description: 'Description of the new building',
+    xy: { x: 0.5, y: 0.5 }
   },
   {
     id: 13,
@@ -124,6 +136,7 @@ const poiData = [
     coords: [-37.72205709341803, 145.0483971834183],
     modelUrl: 'models/NewBuilding.splat',
     description: 'Description of the new building',
+    xy: { x: 0.5, y: 0.5 }
   },
   {
     id: 14,
@@ -131,6 +144,7 @@ const poiData = [
     coords: [-37.72205285022732, 145.04768908023837],
     modelUrl: 'models/NewBuilding.splat',
     description: 'Description of the new building',
+    xy: { x: 0.5, y: 0.5 }
   },
   {
     id: 15,
@@ -138,6 +152,7 @@ const poiData = [
     coords: [-37.72206557979871, 145.04921257495883],
     modelUrl: 'models/NewBuilding.splat',
     description: 'Description of the new building',
+    xy: { x: 0.5, y: 0.5 }
   },
   {
     id: 16,
@@ -145,6 +160,7 @@ const poiData = [
     coords: [-37.720024577242846, 145.04840254783633],
     modelUrl: 'models/NewBuilding.splat',
     description: 'Description of the new building',
+    xy: { x: 0.5, y: 0.5 }
   },
   {
     id: 17,
@@ -152,6 +168,7 @@ const poiData = [
     coords: [-37.723767079486024, 145.0498723983765],
     modelUrl: 'models/NewBuilding.splat',
     description: 'Description of the new building',
+    xy: { x: 0.5, y: 0.5 }
   },
   {
     id: 18,
@@ -159,6 +176,7 @@ const poiData = [
     coords: [-37.7207247195914, 145.0514227151871],
     modelUrl: 'models/NewBuilding.splat',
     description: 'Description of the new building',
+    xy: { x: 0.5, y: 0.5 }
   },
   {
     id: 19,
@@ -166,6 +184,7 @@ const poiData = [
     coords: [-37.720711989789585, 145.0532948970795],
     modelUrl: 'models/NewBuilding.splat',
     description: 'Description of the new building',
+    xy: { x: 0.5, y: 0.5 }
   },
   {
     id: 20,
@@ -173,6 +192,7 @@ const poiData = [
     coords: [-37.7216285299291, 145.05170166492465],
     modelUrl: 'models/NewBuilding.splat',
     description: 'Description of the new building',
+    xy: { x: 0.5, y: 0.5 }
   },
 ];
 

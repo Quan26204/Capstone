@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState } from 'react';
 
-const ViewerContext = createContext(undefined);
+const ViewerContext = createContext();
 
 export function ViewerProvider({ children }) {
   const [selectedPOI, setSelectedPOI] = useState(null);
@@ -11,4 +11,6 @@ export function ViewerProvider({ children }) {
   );
 }
 
-export function useViewer() { return useContext(ViewerContext); }
+export function useViewer() {
+  return useContext(ViewerContext);
+}

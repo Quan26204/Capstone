@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function SearchBox({ searchQuery, setSearchQuery, results }) {
+export default function SearchBox({ searchQuery, setSearchQuery, results, onSelectPOI }) {
   return (
     <aside className="search-box">
       <h3>Search</h3>
@@ -41,7 +41,16 @@ export default function SearchBox({ searchQuery, setSearchQuery, results }) {
         ) : (
           <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
             {results.map(poi => (
-              <li key={poi.id} style={{ padding: '8px 0', borderBottom: '1px solid #eee' }}>
+              <li
+                key={poi.id}
+                style={{
+                  padding: '8px 0',
+                  borderBottom: '1px solid #eee',
+                  cursor: 'pointer',
+                  color: '#1976d2'
+                }}
+                onClick={() => onSelectPOI?.(poi)}
+              >
                 <strong>{poi.name}</strong>
                 <div style={{ fontSize: '0.95em', color: '#555' }}>{poi.description}</div>
               </li>

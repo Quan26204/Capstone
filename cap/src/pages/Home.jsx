@@ -3,11 +3,13 @@ import MapView from '../features/map/MapView.jsx';
 import InfoPanel from '../features/panel/InfoPanel.jsx';
 import SearchBox from '../components/SearchBox.jsx';
 import '../components/SearchBox.css';
+import { useViewer } from '../context/ViewerContext.jsx';
 
 export default function Home() {
   const [poi, setPoi] = useState([]);
   const [error, setError] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
+  const { setSelectedPOI } = useViewer() || {};
 
   useEffect(() => {
     fetch('/api/poi')
@@ -38,13 +40,15 @@ export default function Home() {
 
   const poiReady = useMemo(() => (Array.isArray(poi) ? poi : []).filter(p => p?.xy), [poi]);
 
-  // Filter POIs based on search query
+  const MAX_RESULTS = 6;
   const filteredPOIs = useMemo(() => {
-    if (!searchQuery) return poiReady;
-    return poiReady.filter(p =>
-      p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      (p.description && p.description.toLowerCase().includes(searchQuery.toLowerCase()))
-    );
+    if (!searchQuery) return poiReady.slice(0, MAX_RESULTS);
+    return poiReady
+      .filter(p =>
+        p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        (p.description && p.description.toLowerCase().includes(searchQuery.toLowerCase()))
+      )
+      .slice(0, MAX_RESULTS);
   }, [searchQuery, poiReady]);
 
   return (
@@ -55,6 +59,7 @@ export default function Home() {
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
         results={filteredPOIs}
+        onSelectPOI={setSelectedPOI}
       />
     </div>
   );
