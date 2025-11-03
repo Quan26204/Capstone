@@ -41,7 +41,7 @@ const poiData = [
     description: 'Bus stop on campus',
     xy: { x: 0.5, y: 0.5 },
     buildingCode: 'BST',
-    timeBuilt: '1998',
+    timeBuilt: '2016',
     closestCarpark: 'Carpark 1'
   },
   {
@@ -50,7 +50,10 @@ const poiData = [
     coords: [-37.71987763017671, 145.0464783764545],
     modelUrl: '/models/JG-BST.splat',
     description: 'Statue near the quad',
-    xy: { x: 0.5, y: 0.5 }
+    xy: { x: 0.5, y: 0.5 },
+    buildingCode: 'JG-BST',
+    timeBuilt:'',
+    closestCarpark: 'Carpark 1'
   },
   {
     id: 3,
@@ -58,7 +61,10 @@ const poiData = [
     coords: [-37.72079511810905, 145.0470506813924],
     modelUrl: '/models/JG.splat',
     description: 'Jenny Graves building',
-    xy: { x: 0.5, y: 0.5 }
+    xy: { x: 0.6, y: 0.6 },
+    buildingCode: 'JG',
+    timeBuilt: '1960',
+    closestCarpark: 'Carpark 1'
   },
   {
     id: 4,
@@ -66,7 +72,10 @@ const poiData = [
     coords: [-37.719405172981254, 145.05110354716055],
     modelUrl: '/models/JSM.splat',
     description: 'Meeting house',
-    xy: { x: 0.5, y: 0.5 }
+    xy: { x: 0.5, y: 0.5 },
+    buildingCode: 'JSM',
+    timeBuilt: '1961',
+    closestCarpark: 'Carpark 7'
   },
   {
     id: 5,
@@ -74,14 +83,17 @@ const poiData = [
     coords: [-37.71353942258608, 145.05038653906396],
     modelUrl: '/models/NR7.splat',
     description: 'Graduate house',
-    xy: { x: 0.5, y: 0.5 }
+    xy: { x: 0.5, y: 0.5 },
+    buildingCode: 'NR7',
+    timeBuilt: '1964',
+    closestCarpark: 'Carpark 8'
   },
   {
     id: 6,
     name: 'George Singer Building',
     coords: [-37.7189637428938, 145.0475871562958],
     modelUrl: '/models/NewBuilding.splat',
-    description: 'Description of the new building',
+    description: 'George Singer Building',
     xy: { x: 0.5, y: 0.5 }
   },
   {
@@ -89,7 +101,7 @@ const poiData = [
     name: 'Biological Sciences Building',
     coords: [-37.71918015433441, 145.0469219684601],
     modelUrl: '/models/NewBuilding.splat',
-    description: 'Description of the new building',
+    description: 'Biological Sciences Building',
     xy: { x: 0.5, y: 0.5 }
   },
   {
@@ -97,7 +109,7 @@ const poiData = [
     name: 'East Lecture Theatre',
     coords: [-37.720779882040674, 145.0492608547211],
     modelUrl: '/models/NewBuilding.splat',
-    description: 'Description of the new building',
+    description: 'East Lecture Theatre',
     xy: { x: 0.5, y: 0.5 }
   },
   {
@@ -105,7 +117,7 @@ const poiData = [
     name: 'La Trobe Institue for Molecular Science',
     coords: [-37.719905764551186, 145.0475871562958],
     modelUrl: '/models/NewBuilding.splat',
-    description: 'Description of the new building',
+    description: 'La Trobe Institue for Molecular Science',
     xy: { x: 0.5, y: 0.5 }
   },
   {

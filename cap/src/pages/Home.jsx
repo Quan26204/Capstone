@@ -16,10 +16,13 @@ export default function Home() {
       .then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
       .then(data => {
         const modelMap = {
-          1: '/models/BST.splat',
-          2: '/models/JG.splat',
-          3: '/models/JSM.splat',
+          1: '/models/BST.splat',           // Bus Stop
+          2: '/models/JG-BST.splat',        // Statue
+          3: '/models/JG.splat',            // Jenny Graves
+          4: '/models/JSM.splat',           // John Scott Meeting House
+          5: '/models/NR7.splat',
         };
+        
         const xyMap = {
           1: { x: 0.452, y: 0.381 },
           2: { x: 0.600, y: 0.400 },

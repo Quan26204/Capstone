@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from 'react-leaflet';
 import { useNavigate } from 'react-router-dom';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -26,6 +26,14 @@ const customIconLarge = new L.Icon({
   shadowSize: [57, 57]
 });
 
+// Component to reset selectedPOI when map is clicked
+function MapClickResetter({ setSelectedPOI }) {
+  useMapEvents({
+    click: () => setSelectedPOI(null)
+  });
+  return null;
+}
+
 export default function MapView({ poi }) {
   const { setSelectedPOI, selectedPOI } = useViewer() || {};
   const navigate = useNavigate();
@@ -36,7 +44,7 @@ export default function MapView({ poi }) {
       markerRefs.current[selectedPOI.id].openPopup();
     }
   }, [selectedPOI]);
-
+  
   const openViewer = (p) => {
     setSelectedPOI?.(p);
     navigate(`/viewer/${p.id}`);
@@ -55,6 +63,7 @@ export default function MapView({ poi }) {
         style={{ width: '100%', height: 'calc(100vh)' }}
       >
         <MapClickLogger />
+        <MapClickResetter setSelectedPOI={setSelectedPOI} />
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution="© OpenStreetMap contributors"
