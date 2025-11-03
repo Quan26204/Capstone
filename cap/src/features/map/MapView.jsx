@@ -21,7 +21,6 @@ export default function MapView({ poi }) {
   const navigate = useNavigate();
   const markerRefs = useRef({});
 
-  // Open popup when selectedPOI changes
   useEffect(() => {
     if (selectedPOI && markerRefs.current[selectedPOI.id]) {
       markerRefs.current[selectedPOI.id].openPopup();
