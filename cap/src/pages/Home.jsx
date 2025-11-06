@@ -12,7 +12,7 @@ export default function Home() {
   const { setSelectedPOI } = useViewer() || {};
 
   useEffect(() => {
-    fetch('/api/poi')
+    fetch('https://capstone-production-6365.up.railway.app/api/poi')
       .then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
       .then(data => {
         const modelMap = {
